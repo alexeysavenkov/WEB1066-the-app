@@ -1,14 +1,17 @@
 language: java
+jdk: oraclejdk8
 
 services:
   - docker
 env:
   jobs:
   - SERVICE=./monolithic/ui
-  - SERVICE=./microservice/frontend/catalog
-  - SERVICE=./microservice/service/cart
-  - SERVICE=./microservice/service/product
-  - SERVICE=./microservice/service/product-go
-  - SERVICE=./microservice/service/navigation
+  # - SERVICE=./microservice/frontend/catalog
+  # - SERVICE=./microservice/service/cart
+  # - SERVICE=./microservice/service/product
+  # - SERVICE=./microservice/service/product-go
+  # - SERVICE=./microservice/service/navigation
+install:
+- "./gradlew clean jar"
 script:
 - "./gradlew -p $SERVICE check"
