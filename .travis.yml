@@ -11,7 +11,9 @@ env:
   # - SERVICE=./microservice/service/product
   # - SERVICE=./microservice/service/product-go
   # - SERVICE=./microservice/service/navigation
-install:
-- "./gradlew clean jar"
+  global:
+  - JDK_VERSION=8
+before_install:
+  - docker pull openjdk:${JDK_VERSION}-jdk
 script:
-- "./gradlew -p $SERVICE check"
+  - docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp openjdk:${JDK_VERSION}-jdk ./gradlew -p $SERVICE check
