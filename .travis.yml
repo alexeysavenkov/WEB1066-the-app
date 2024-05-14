@@ -8,12 +8,21 @@ services:
 env:
   jobs:
   - SERVICE=./monolithic/ui
-  # - SERVICE=./microservice/frontend/catalog
-  # - SERVICE=./microservice/service/cart
-  # - SERVICE=./microservice/service/product
-  # - SERVICE=./microservice/service/product-go
-  # - SERVICE=./microservice/service/navigation
+  - SERVICE=./microservice/frontend/catalog
+  - SERVICE=./microservice/service/cart
+  - SERVICE=./microservice/service/product
+  - SERVICE=./microservice/service/product-go
+  - SERVICE=./microservice/service/navigation
   global:
   - JDK_VERSION=8
+  - DOCKER_PASSWORD=DOCKER_PASSWORD
 script:
   - ./gradlew -p $SERVICE check
+before deploy:
+  - "./gradlew -p ./microservice/service/navigation packageToContainer ;"
+deploy:
+  provider: script
+  script: docker login --username 'alexeysavenkov' --password '${DOCKER_PASSWORD}' && docker push alexeysavenkov/web1066-the-app:latest
+  on:
+    condition: "$SERVICE=='./microservice/service/navigation'"
+  
