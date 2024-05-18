@@ -25,5 +25,5 @@ deploy:
   provider: script
   script: docker login --username 'alexeysavenkov' --password '${DOCKER_PASSWORD}' && docker push alexeysavenkov/web1066-the-app:latest
   on:
-    condition: "$SERVICE=='./microservice/service/navigation'"
+    condition: "$SERVICE=='./monolithic/ui'"
   
