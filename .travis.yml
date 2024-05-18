@@ -8,11 +8,12 @@ services:
 env:
   jobs:
   - SERVICE=./monolithic/ui
-  - SERVICE=./microservice/frontend/catalog
-  - SERVICE=./microservice/service/cart
-  - SERVICE=./microservice/service/product
-  - SERVICE=./microservice/service/product-go
-  - SERVICE=./microservice/service/navigation
+  - SERVICE=./monolithic/repository/order
+  - SERVICE=./monolithic/repository/cart
+  - SERVICE=./monolithic/repository/product
+  - SERVICE=./monolithic/repository/user
+  - SERVICE=./monolithic/service/cart
+  - SERVICE=./monolithic/service/user
   global:
   - JDK_VERSION=8
   - DOCKER_PASSWORD=DOCKER_PASSWORD
