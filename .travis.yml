@@ -17,6 +17,7 @@ env:
   global:
   - JDK_VERSION=8
   - DOCKER_PASSWORD=DOCKER_PASSWORD
+  - COVERAGE=0
 script:
   - ./gradlew -p $SERVICE check
 before deploy:
