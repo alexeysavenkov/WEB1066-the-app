@@ -6,6 +6,6 @@ jdk: oraclejdk8
 services:
   - docker
 install:
-- "./gradlew clean jar"
+  - "./gradlew clean jar"
 script:
-  - echo 'testing coming soon'
+  - ./gradlew test
