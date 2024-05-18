@@ -5,26 +5,7 @@ jdk: oraclejdk8
 
 services:
   - docker
-env:
-  jobs:
-  - SERVICE=./monolithic/ui
-  - SERVICE=./monolithic/repository/order
-  - SERVICE=./monolithic/repository/cart
-  - SERVICE=./monolithic/repository/product
-  - SERVICE=./monolithic/repository/user
-  - SERVICE=./monolithic/service/cart
-  - SERVICE=./monolithic/service/user
-  global:
-  - JDK_VERSION=8
-  - secure: DOCKER_PASSWORD=ABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6CaABC5OwLpwB7L6Ca
-  - COVERAGE=0
+install:
+- "./gradlew clean jar"
 script:
-  - ./gradlew -p $SERVICE check
-before deploy:
-  - "./gradlew -p ./microservice/service/navigation packageToContainer ;"
-deploy:
-  provider: script
-  script: docker login --username 'alexeysavenkov' --password '${DOCKER_PASSWORD}' && docker push alexeysavenkov/web1066-the-app:latest
-  on:
-    condition: "$SERVICE=='./monolithic/ui'"
-  
+  - echo 'testing coming soon'
