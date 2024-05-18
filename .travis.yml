@@ -6,6 +6,7 @@ jdk:
 - oraclejdk9
 
 env:
+  matrix:
   - COVERAGE=0.05 SERVICE=./monolithic/ui
   - COVERAGE=0.14 SERVICE=./monolithic/service/cart
   - COVERAGE=0.0 SERVICE=./monolithic/service/user
@@ -13,6 +14,13 @@ env:
   - COVERAGE=0.0 SERVICE=./monolithic/repository/cart
   - COVERAGE=0.12 SERVICE=./monolithic/repository/product
   - COVERAGE=0.31 SERVICE=./monolithic/repository/user
+  global:
+  secure: d9WuRbShehteBBZL2XQ9f8c1uE85kWu9f9KjHsHQK9d2Fo40SmoCQva4gEekMJtvKdse1zs2rzi1mnUtWb9b8kFVQ/06AjmtPYiI/BrP96n
+NnbqCoA53dU/r0653wbtoRhxeaL0c+h991q+3Fx1I6oiOv4CFr7qXI4/RQ9X5HFrxo5II0btwl0I3frFw5ZRghYNDgr9ZgxDVoj/PI8HVJiEBssECat6w1PH
+5g9/cQUX271PszVPLhmymVd6Rvq0NToFn5HdRfb/sJoZdQvnun0aVBYIcf029pewqnaJPYVhjyfNGcFUnwApX3r0br2e+7Yt83DOgHXPOzoXlcNFJRT1YoHj
+3DFI2Y05IS5ql5LwxqpOBOjY123bF/m4z69cPFpjmQ/54MJnTYAdaSRGHOSVapJgyg9QZbTEsmW9tTPmKu6Kgfte3DrHa7vlNv4fc10byBYFpyFZjCjLf/Ng
+ggKqZkByHyrGRs7KBbnwuaukmRkgcs/wArVj5wGIVwVwPx/I8NxPCnr9QLWo9TdYJWA5ELhV8Q0LEU1LI/dBQkE5kaqdjiB1F6kkqlwHbJuPir8bSXC+GIxN
+xZPLI3xSS6LX5JoIWJW4DWHnUGHG3Oc7JMk7sVsmgyppPYkliw4wbI6caxfTw7Pt4GfRn2XZyygbxO2a7V6q/Vs9oMQ/Junw=
 
 services:
   - docker
@@ -28,6 +36,7 @@ after failure:
 
 deploy:
   provider: script
-  script: echo 'WIP'
+  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"alexeysavenkov"
+    --password-stdin ;"
   on:
     all_branches: true
